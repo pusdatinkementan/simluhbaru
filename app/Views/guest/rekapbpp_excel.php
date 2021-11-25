@@ -8,7 +8,7 @@
 </center>
 <br><br>
 <div class="card">
-    <form>
+    <form action="<?= base_url('/profil/Guest/rekapbppexcel/') ?>">
         <div class="row">
             <div class="col-md-2">
                 <label for="kode_desa">Provinsi</label>
@@ -47,29 +47,8 @@
     $(document).ready(function() {
         $(document).delegate('#btnDownload', 'click', function() {
             var kode_prop = $('#pilprov').val();
-            window.location = page;
-            //alert(kode_prop);
-            $.ajax({
-                url: '<?= base_url() ?>/profil/Guest/rekapbppexcel/' + kode_prop,
-                type: 'GET',
-                type: "application/vnd.ms-excel",
-                processData: false,
-                contentType: false,
-                cache: false,
-                // success: function(result) {
-                //     Swal.fire({
-                //         title: 'Sukses',
-                //         text: "Data akan di download",
-                //         type: 'success',
-                //         dataType: "text"
-                //     }).then((result) => {
+            location.href = "<?= base_url() ?>/profil/Guest/rekapbppexcel/" + kode_prop;
 
-                //         if (result.value) {
-                //             location.reload();
-                //         }
-                //     });
-                // },
-            });
         });
     });
 </script>
