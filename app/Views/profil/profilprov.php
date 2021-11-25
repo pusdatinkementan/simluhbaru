@@ -546,15 +546,7 @@ $data = $json[0];
                                                 </div>
                                                 <label for="ketua">Tanggal Pembentukan</label>
                                                 <div class="input-group mb-3">
-                                                    <select id="day" name="tgl_berdiri" class="form-select tgl_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <select id="month" name="bln_berdiri" class="form-select bln_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <select id="year" name="thn_berdiri" class="form-select thn_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
+                                                    <input type="text" class="form-control" id="tglpembentukan" placeholder="Tanggal Pembentukan" name="tglpembentukan">
                                                 </div>
                                                 <label for="alamat">Alamat Kantor</label>
                                                 <div class="input-group mb-3">
@@ -627,9 +619,7 @@ $data = $json[0];
                     $('#nama_bapel').val(res[0].nama_bapel);
                     $('#dasar_hukum').val(res[0].dasar_hukum);
                     $('#no_peraturan').val(res[0].no_peraturan);
-                    $('#day').val(res[0].tgl_berdiri);
-                    $('#month').val(res[0].bln_berdiri);
-                    $('#year').val(res[0].thn_berdiri);
+                    $('#tglpembentukan').val(res[0].tgl_berdiri + '/' + res[0].bln_berdiri + '/' + res[0].thn_berdiri);
                     $('#alamat').val(res[0].alamat);
                     $('#deskripsi_lembaga_lain').val(res[0].deskripsi_lembaga_lain);
                     $('#telp_kantor').val(res[0].telp_kantor);
@@ -649,16 +639,19 @@ $data = $json[0];
                     $("#btnSave").attr("id", "btnDoEdit");
 
                     $(document).delegate('#btnDoEdit', 'click', function() {
-                        console.log('ok');
+                        tglpembentukan = $('#tglpembentukan').val();
+                        bln = tglpembentukan.substr(0, 2);
+                        tgl = tglpembentukan.substr(3, 2);
+                        thn = tglpembentukan.substr(6, 4);
 
                         var id_bakor = $('#id_bakor').val();
                         var deskripsi_lembaga_lain = $('#deskripsi_lembaga_lain').val();
                         var nama_bapel = $('#nama_bapel').val();
                         var dasar_hukum = $('#dasar_hukum').val();
                         var no_peraturan = $('#no_peraturan').val();
-                        var tgl_berdiri = $('#day').val();
-                        var bln_berdiri = $('#month').val();
-                        var thn_berdiri = $('#year').val();
+                        var tgl_berdiri = tgl;
+                        var bln_berdiri = bln;
+                        var thn_berdiri = thn;
                         var alamat = $('#alamat').val();
                         var telp_kantor = $('#telp_kantor').val();
                         var email = $('#email').val();

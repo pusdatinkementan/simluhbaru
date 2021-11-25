@@ -25,13 +25,11 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                 <tr>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">No</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">Nama Desa</th>
-                    
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">ID Poktan</th>
-                    
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">Nama Poktan</th>
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">Nama Ketua</th>
-                   
                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">Alamat Sekretariat</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder" style="text-align: center;">Aksi</th>
                    
                     <th class="text-secondary opacity-7"></th>
                 </tr>
@@ -84,6 +82,11 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                             <a href="<?= base_url('/listbantu?ip=' . $row['id_poktan']) ?>"> 
                                  +Tambah Bantuan
                             </button>
+
+                            <button type="button" class="btn bg-gradient-info btn-sm">
+                            <a href="<?= base_url('/komoditasbun?ip=' . $row['id_poktan']) ?>"> 
+                                 +Tambah Komoditas
+                            </button>
                             
                         </td>
                 </tr>
@@ -123,14 +126,14 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                                             </div>
                                             <label>Nama Poktan</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="nama_poktan" name="nama_poktan" placeholder="Nama Poktan" aria-label="Password" aria-describedby="password-addon">
+                                                <input type="text" class="form-control" id="nama_poktan" name="nama_poktan" placeholder="Nama Poktan" required>
                                             </div>
                                             <label>Nama Ketua</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="ketua_poktan" name="ketua_poktan" placeholder="Nama Ketua" aria-label="Password" aria-describedby="password-addon">
+                                                <input type="text" class="form-control" id="ketua_poktan" name="ketua_poktan" placeholder="Nama Ketua" required>
                                             </div>
                                             <label>Alamat Lengkap Sekretariat</label>
-                                                <textarea class="form-control" id="alamat" placeholder="Alamat" name="alamat" aria-label="Password" aria-describedby="password-addon"></textarea>
+                                                <textarea class="form-control" id="alamat" placeholder="Alamat" name="alamat" required></textarea>
                                             <label>Tahun Pembentukan</label>
                                             <div class="input-group mb-3">
                                                 <select id="year" class="form-select"  aria-label="Default select example" name="simluh_tahun_bentuk">

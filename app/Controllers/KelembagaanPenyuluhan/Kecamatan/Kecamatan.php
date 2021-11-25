@@ -78,20 +78,22 @@ class Kecamatan extends BaseController
 
         $get_param = $this->request->getGet();
         $kode_kec = $get_param['kode_kec'];
+        $kode_bpp = $get_param['kodebpp'];
+        $kode_bp3k = $get_param['kode_bp3k'];
 
-        $profilkec = $kec_model->getProfilKec($kode_kec);
-        $wilkec = $kec_model->getWIlkec($kode_kec);
+        $profilkec = $kec_model->getProfilKec($kode_kec, $kode_bpp);
+        $wilkec = $kec_model->getWIlkec($kode_kec, $kode_bp3k);
         $namawil = $wilModel->getNamaWil(session()->get('kodebapel'));
         $penyuluhPNS = $kec_model->getPenyuluhPNS(session()->get('kodebapel'));
         $penyuluhTHL = $kec_model->getPenyuluhTHL(session()->get('kodebapel'));
         $kec = $kec_model->getKec(session()->get('kodebapel'));
-        $fasdata = $kec_model->getFas($kode_kec);
+        $fasdata = $kec_model->getFas($kode_kec, $kode_bpp);
         $kode = $wilModel->getKodeWil(session()->get('kodebapel'));
         $idbpp = $kec_model->getIdBpp(session()->get('kodebapel'));
-        $klas = $kec_model->getKlasifikasi($kode_kec);
-        $award = $kec_model->getAward($kode_kec);
-        $dana = $kec_model->getDana($kode_kec);
-        $potensi = $kec_model->getPotensiWilayah($kode_kec);
+        $klas = $kec_model->getKlasifikasi($kode_kec, $kode_bpp);
+        $award = $kec_model->getAward($kode_kec, $kode_bp3k);
+        $dana = $kec_model->getDana($kode_kec, $kode_bpp);
+        $potensi = $kec_model->getPotensiWilayah($kode_kec, $kode_bpp);
         $jenis_komoditas = $kec_model->getJenisKomoditas();
         $penyuluh = $kec_model->getPenyuluh($kode_kec);
         $bp = $kec_model->getBP3K($kode_kec);
@@ -129,30 +131,7 @@ class Kecamatan extends BaseController
 
     public function save()
     {
-        if (!$this->validate([
-            'foto' => [
-                'rules' => 'max_size[foto,3072]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar',
-                    'is_image' => 'File yang anda pilih bukan gambar',
-                    'mime_in' => 'File yang anda pilih bukan gambar'
-                ]
-            ]
-        ])) {
-            return redirect()->to('/kecamatan')->withInput();
-        }
-
-        $fileSampul = $this->request->getFile('foto');
-
-        if ($fileSampul->getError() == 4) {
-            $namaSampul = 'logo.png';
-        } else {
-            $fileSampul->move('assets/img');
-            $namaSampul = $fileSampul->getName();
-        }
-
         $this->model->save([
-            'foto' => $namaSampul,
             'kode_prop' => $this->request->getVar('kode_prop'),
             'satminkal' => $this->request->getVar('satminkal'),
             'bentuk_lembaga' => $this->request->getVar('bentuk_lembaga'),
@@ -346,7 +325,7 @@ class Kecamatan extends BaseController
 
         //session()->setFlashdata('pesan', 'Edit data berhasil.');
 
-        return redirect()->to('/detail_kecamatan?kode_kec=' . $this->request->getVar('kecamatan'));
+        return redirect()->to('/detail_kecamatan?kode_kec=' . $this->request->getVar('kecamatan') . '&kodebpp=' . $id);
         // dd($this->request->getVar());
     }
 
@@ -419,7 +398,7 @@ class Kecamatan extends BaseController
             'jum_petani' => $jum_petani
         ]);
 
-        return redirect()->to('/detail_kecamatan?kode_kec=' . $this->request->getPost('kecamatan'));
+        //return redirect()->to('/detail_kecamatan?kode_kec=' . $this->request->getPost('kecamatan'));
     }
 
     public function delete_wilkec($id)

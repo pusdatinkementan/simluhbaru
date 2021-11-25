@@ -550,7 +550,7 @@ $data = $json[0];
                             <div class="card">
                                 <div class="card-body p-3">
                                     <div class="row">
-                                        <h1 class="h3 mb-4 text-gray-800">Kegiatan yang dilakukan <i class="fas fa-add" style="float: right;" data-bs-toggle="modal" data-bs-target="#modal-fk" id="btn-add-fas"></i></h1>
+                                        <h1 class="h3 mb-4 text-gray-800">Kegiatan yang dilakukan <i class="fas fa-edit" style="float: right;" data-bs-toggle="modal" data-bs-target="#modal-fk" id="btn-add-fas"></i></h1>
                                         <div class="col-lg-12">
 
 
@@ -642,7 +642,7 @@ $data = $json[0];
                                                 </div>
                                                 <label for="kode_desa">Jenis Kelembagaan</label>
                                                 <div class="input-group mb-3">
-                                                    <select name="nama_bapel" id="nama_bapel" class="form-control input-lg">
+                                                    <select name="nama_bapel" id="nama_bapel" class="form-control input-lg" required>
                                                         <option value=""></option>
                                                         <OPTION value="31">Badan<BR>
                                                         <OPTION value="32">Dinas<BR>
@@ -659,7 +659,7 @@ $data = $json[0];
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
-                                                            <input class="form-check-input jenis_tp" type="checkbox" id="jenis_tp" name="jenis_tp" value="2">
+                                                            <input class="form-check-input jenis_tp" type="checkbox" id="jenis_tp" name="jenis_tp" value="2" required>
                                                             <label class="form-check-label" for="flexCheckDefault">
                                                                 Tanaman Pangan
                                                             </label>
@@ -703,29 +703,21 @@ $data = $json[0];
                                                     </label>
                                                 </div>
                                                 <label for="alamat">Dasar Hukum Pembentukan</label>
-                                                <select name="dasar_hukum" id="dasar_hukum" class="form-control input-lg">
+                                                <select name="dasar_hukum" id="dasar_hukum" class="form-control input-lg" required>
                                                     <option value=""></option>
                                                     <option value="Perda">Perda</option>
                                                 </select>
                                                 <label for="ketua">No Peraturan</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="no_peraturan" placeholder="Nomor Peraturan" name="no_peraturan">
+                                                    <input type="text" class="form-control" id="no_peraturan" placeholder="Nomor Peraturan" name="no_peraturan" required>
                                                 </div>
                                                 <label for="ketua">Tanggal Pembentukan</label>
                                                 <div class="input-group mb-3">
-                                                    <select id="day" name="tgl_berdiri" class="form-select tgl_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <select id="month" name="bln_berdiri" class="form-select bln_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
-                                                    <select id="year" name="thn_berdiri" class="form-select thn_berdiri" aria-label="Default select example">
-                                                        <option value=""></option>
-                                                    </select>
+                                                    <input type="text" class="form-control" id="tglpembentukan" placeholder="Tanggal Pembentukan" name="tglpembentukan" required>
                                                 </div>
                                                 <label for="bendahara">Nama Pimpinan</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="ketua" placeholder="Nama Pimpinan" name="ketua">
+                                                    <input type="text" class="form-control" id="ketua" placeholder="Nama Pimpinan" name="ketua" required>
                                                     <label style="margin-top: 10px;">No.HP</label>
                                                     <input type="text" style="margin-left: 5px;" class="form-control" id="telp_hp" placeholder="No. HP" name="telp_hp" onkeypress="return Angka(event)">
                                                 </div>
@@ -786,52 +778,52 @@ $data = $json[0];
                                             <div class="col">
                                                 <label for="ketua">Bidang yang menangani fungsi penyuluhan</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="bidang_luh" placeholder="Bidang" name="bidang_luh">
+                                                    <input type="text" class="form-control" id="bidang_luh" placeholder="Bidang" name="bidang_luh" required>
                                                 </div>
                                                 <label for="ketua">Nama kepala bidang</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="nama_kabid" placeholder="Nama Kabid" name="nama_kabid">
+                                                    <input type="text" class="form-control" id="nama_kabid" placeholder="Nama Kabid" name="nama_kabid" required>
                                                     <label style="margin-top: 10px;">No.HP</label>
-                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kabid" placeholder="No. HP" name="hp_kabid" onkeypress="return Angka(event)">
+                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kabid" placeholder="No. HP" name="hp_kabid" onkeypress="return Angka(event)" required>
                                                 </div>
                                                 <label for="ketua">Seksi yang menangani penyuluhan</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="seksi_luh" placeholder="Seksi" name="seksi_luh">
+                                                    <input type="text" class="form-control" id="seksi_luh" placeholder="Seksi" name="seksi_luh" required>
                                                 </div>
                                                 <label for=" ketua">Nama kepala seksi</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="nama_kasie" name="nama_kasie" placeholder="Nama Kepala Seksi">
+                                                    <input type="text" class="form-control" id="nama_kasie" name="nama_kasie" placeholder="Nama Kepala Seksi" required>
                                                     <label style="margin-top: 10px;">No.HP</label>
-                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kasie" name="hp_kasie" placeholder="No. HP" onkeypress="return Angka(event)">
+                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kasie" name="hp_kasie" placeholder="No. HP" onkeypress="return Angka(event)" required>
                                                 </div>
                                                 <label for="ketua">UPTD yang menangani fungsi penyuluhan</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="uptd_luh" placeholder="ketua" name="uptd_luh">
+                                                    <input type="text" class="form-control" id="uptd_luh" placeholder="ketua" name="uptd_luh" required>
                                                 </div>
 
                                                 <label for="ketua">Nama kepala UPTD</label>
                                                 <div class="input-group mb-3">
                                                     <input type="text" class="form-control" id="nama_kauptd" name="nama_kauptd" placeholder="Nama Kepala UPTD">
                                                     <label style="margin-top: 10px;">No.HP</label>
-                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kauptd" name="hp_kauptd" placeholder="No. HP">
+                                                    <input type="text" style="margin-left: 5px;" class="form-control" id="hp_kauptd" name="hp_kauptd" placeholder="No. HP" required>
                                                 </div>
                                                 <label for="alamat">Alamat Kantor</label>
                                                 <div class="input-group mb-3">
-                                                    <textarea type="text" class="form-control" id="alamat" placeholder="alamat" name="alamat"></textarea>
+                                                    <textarea type="text" class="form-control" id="alamat" placeholder="alamat" name="alamat" required></textarea>
                                                 </div>
                                                 <div class="input-group mb-3">
                                                     <label for="jum_anggota">Titik koordinat (GPS POint)
-                                                        <input type="text" class="form-control" id="koord" name="koord"><br>
+                                                        <input type="text" class="form-control" id="koord" name="koord" required><br>
                                                         <label>Format titik koordinat adalah Decimal Degree, contoh : -6.2924034,106.820540</label>
                                                     </label>
                                                 </div>
                                                 <label for="ketua">No.Telepon/Fax</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="telp_kantor" placeholder="No Telp Kantor" name="telp_kantor" onkeypress="return Angka(event)">
+                                                    <input type="text" class="form-control" id="telp_kantor" placeholder="No Telp Kantor" name="telp_kantor" onkeypress="return Angka(event)" required>
                                                 </div>
                                                 <label for="ketua">Alamat Email</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="email" placeholder="email" name="email">
+                                                    <input type="text" class="form-control" id="email" placeholder="email" name="email" required>
                                                 </div>
                                                 <label for="ketua">Alamat Website/Blog</label>
                                                 <div class="input-group mb-3">
@@ -840,7 +832,7 @@ $data = $json[0];
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" id="btnSave" class="btn bg-gradient-primary">Simpan Data</button>
+                                                <button type="button" onclick="submitform()" id="btnSave" class="btn bg-gradient-primary">Simpan Data</button>
                                             </div>
                                         </div>
                                     </form>
@@ -964,6 +956,25 @@ $data = $json[0];
 <?= $this->section('script') ?>
 
 <script type="text/javascript">
+    $(function() {
+        $('input[name="tglpembentukan"]').daterangepicker({
+            format: 'dd/MM/YYYY',
+            indonesianDate: true,
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1950
+        });
+    });
+
+    function submitform() {
+        var f = document.getElementsByTagName('form')[0];
+        if (f.checkValidity()) {
+            f.submit();
+        } else {
+            alert(document.getElementById('example').validationMessage);
+        }
+    }
+
     function Angka(event) {
         var angka = (event.which) ? event.which : event.keyCode
         if (angka != 46 && angka > 31 && (angka < 48 || angka > 57))
@@ -1016,6 +1027,7 @@ $data = $json[0];
 
     select.value = new Date().getFullYear();
 
+
     $(document).ready(function() {
         $(document).delegate('#btn-edit', 'click', function() {
             //var myModal = new bootstrap.Modal(document.getElementById('modal-edit'), options);
@@ -1033,9 +1045,7 @@ $data = $json[0];
                     $('#nama_bapel').val(res[0].nama_bapel);
                     $('#dasar_hukum').val(res[0].dasar_hukum);
                     $('#no_peraturan').val(res[0].no_peraturan);
-                    $('#day').val(res[0].tgl_berdiri);
-                    $('#month').val(res[0].bln_berdiri);
-                    $('#year').val(res[0].thn_berdiri);
+                    $('#tglpembentukan').val(res[0].tgl_berdiri + '/' + res[0].bln_berdiri + '/' + res[0].thn_berdiri);
                     $('#alamat').val(res[0].alamat);
                     $('#deskripsi_lembaga_lain').val(res[0].deskripsi_lembaga_lain);
                     $('#telp_kantor').val(res[0].telp_kantor);
@@ -1103,16 +1113,21 @@ $data = $json[0];
                     $("#btnSave").attr("id", "btnDoEdit");
 
                     $(document).delegate('#btnDoEdit', 'click', function() {
-                        console.log('ok');
+                        // console.log('ok');
+                        tglpembentukan = $('#tglpembentukan').val();
+                        bln = tglpembentukan.substr(0, 2);
+                        tgl = tglpembentukan.substr(3, 2);
+                        thn = tglpembentukan.substr(6, 4);
+
 
                         var id_gapoktan = $('#id_gapoktan').val();
                         var deskripsi_lembaga_lain = $('#deskripsi_lembaga_lain').val();
                         var nama_bapel = $('#nama_bapel').val();
                         var dasar_hukum = $('#dasar_hukum').val();
                         var no_peraturan = $('#no_peraturan').val();
-                        var tgl_berdiri = $('#day').val();
-                        var bln_berdiri = $('#month').val();
-                        var thn_berdiri = $('#year').val();
+                        var tgl_berdiri = tgl;
+                        var bln_berdiri = bln;
+                        var thn_berdiri = thn;
                         var alamat = $('#alamat').val();
                         var telp_kantor = $('#telp_kantor').val();
                         var email = $('#email').val();

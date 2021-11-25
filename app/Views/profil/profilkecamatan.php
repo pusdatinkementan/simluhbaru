@@ -1242,18 +1242,8 @@ $data = $json[0];
                                         <input type="hidden" name="kode_prop" id="kode_prop" value="<?= $dt['kode_prop']; ?>">
                                         <input type="hidden" name="satminkal" id="satminkal" value="<?= $dt['satminkal']; ?>">
                                         <input type="hidden" name="kode_bp3k" id="kode_bp3k" value="<?= $dt['kode_bp3k']; ?>">
+                                        <input type="hidden" name="kecamatan" id="kec" value="<?= $dt['kecamatan']; ?>">
 
-                                        <label for="kecamatan">Nama Kecamatan</label>
-                                        <div class="input-group mb-3">
-                                            <select name="kecamatan" id="kec" class="form-control input-lg">
-                                                <option value="">Pilih Kecamatan</option>
-                                                <?php
-                                                foreach ($kec as $row) {
-                                                    echo '<option value="' . $row["id_daerah"] . '">' . 'Kec. ' . $row["deskripsi"] . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
                                         <label for="jum_petani">Jumlah Petani</label>
                                         <div class="input-group mb-3">
                                             <input type="number" class="form-control" id="jum_petani" placeholder="Jumlah Petani" name="jum_petani" onkeypress="return Angka(event)">

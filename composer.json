@@ -10,7 +10,8 @@
         "php": "^7.3 || ^8.0",
         "codeigniter4/framework": "^4",
         "myth/auth": "^1.0",
-        "components/font-awesome": "^5.15"
+        "components/font-awesome": "^5.15",
+        "phpoffice/phpspreadsheet": "^1.19"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

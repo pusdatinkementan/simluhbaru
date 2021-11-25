@@ -63,7 +63,7 @@ class KecamatanModel extends Model
         return $data;
     }
 
-    public function getProfilKec($kode_kec)
+    public function getProfilKec($kode_kec,  $kode_bpp)
     {
         $db = Database::connect();
         $query  = $db->query("select * , a.id, a.email, a.roda_4_apbn, a.soil_apbn, a.soil_apbd, a.tgl_update, a.alamat, a.kode_bp3k, b.nama, c.deskripsi, f.jumgap,f.kode_bp3k,g.jumkep,d.jumpok,e.jumthl,h.jumpns,i.unit_kerja
@@ -77,9 +77,10 @@ class KecamatanModel extends Model
                                 left join (select unit_kerja,count(id) as jumpns from tbldasar GROUP BY unit_kerja) h on a.id=h.unit_kerja and kode_kab='4' and status !='1' and status !='2' and status !='3'
                                 left join(select unit_kerja,count(id_swa) as jumswa from tbldasar_swa GROUP BY unit_kerja) i on a.id=i.unit_kerja
                                 left join tblbpp_wil_kec j on a.kode_bp3k = j.kode_bp3k
-                                where a.kecamatan='$kode_kec' and a.kecamatan !='0'  
+                                where a.kecamatan='" . $kode_kec . "' and a.kecamatan !='0' and a.id = '" . $kode_bpp . "' 
                                 order by nama_bpp");
         $row   = $query->getRowArray();
+        //dd($row);
         return $row;
     }
 
@@ -129,15 +130,14 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getWIlkec($kode_kec)
+    public function getWIlkec($kode_kec, $kode_bp3k)
     {
         $db = Database::connect();
-        $query3  = $db->query("select *, a.kecamatan, a.id, a.jum_petani, c.deskripsi as nama_kec
+        $query3  = $db->query("select *, a.kecamatan, a.id, a.jum_petani, c.deskripsi as nama_kec, b.kode_bp3k
                                 from tblbpp_wil_kec a
                                 left join tblbpp b on a.kode_bp3k=b.kode_bp3k
                                 left join tbldaerah c on a.kecamatan=c.id_daerah
-                                where a.kecamatan='$kode_kec'
-                                ");
+                                where b.kecamatan='" . $kode_kec . "' and b.kode_bp3k = '" . $kode_bp3k . "'");
         $results = $query3->getResultArray();
 
         $data =  [
@@ -157,14 +157,13 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getKlasifikasi($kode_kec)
+    public function getKlasifikasi($kode_kec, $kode_bpp)
     {
         $db = Database::connect();
-        $query3  = $db->query("select *, a.id, a.tahun, a.skor, a.klasifikasi, b.kecamatan
+        $query3  = $db->query("select *, a.id, a.id_bpp, a.tahun, a.skor, a.klasifikasi, b.kecamatan
                                 from tblbpp_klasifikasi a
                                 left join tblbpp b on a.id_bpp=b.id
-                                where b.kecamatan='$kode_kec'
-                                ");
+                                where b.kecamatan='" . $kode_kec . "' and a.id_bpp = '" . $kode_bpp . "'");
         $results = $query3->getResultArray();
 
         $data =  [
@@ -194,23 +193,24 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getFas($kode_kec)
+    public function getFas($kode_kec, $kode_bpp)
     {
         $db = Database::connect();
         $query3  = $db->query("select *, a.id, a.fasilitasi, a.tahun, a.kegiatan, b.kecamatan, c.fasilitasi as nama_fasilitasi
                                 from tblbpp_fasilitasi_kegiatan a
                                 left join tblbpp b on a.id_bpp=b.id
                                 left join reff_fasilitasi_bpp c on a.fasilitasi=c.idfasilitasi
-                                where b.kecamatan='$kode_kec'
-                                ");
-        $results = $query3->getResultArray();
+                                where b.kecamatan='" . $kode_kec . "' and a.id_bpp = '" . $kode_bpp . "'");
 
+        $results = $query3->getResultArray();
+        //dd($results);
         $data =  [
             'fasdata' => $results,
         ];
 
         return $data;
     }
+
 
     public function getFasilitasi($id)
     {
@@ -222,14 +222,14 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getAward($kode_kec)
+    public function getAward($kode_kec, $kode_bp3k)
     {
         $db = Database::connect();
-        $query3  = $db->query("select *, a.id, a.nama_penghargaan, a.tahun, a.peringkat, a.tingkat, b.kecamatan
+        $query3  = $db->query("select *, a.id, a.nama_penghargaan, a.tahun, a.peringkat, a.tingkat, b.kecamatan, b.kode_bp3k
                                 from tblbpp_penghargaan a
                                 left join tblbpp b on a.kode_bp3k=b.kode_bp3k
-                                where b.kecamatan='$kode_kec'
-                                ");
+                                where b.kecamatan='" . $kode_kec . "' and b.kode_bp3k = '" . $kode_bp3k . "'");
+
         $results = $query3->getResultArray();
 
         $data =  [
@@ -249,14 +249,13 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getDana($kode_kec)
+    public function getDana($kode_kec, $kode_bpp)
     {
         $db = Database::connect();
         $query3  = $db->query("select *, a.id, a.id_bpp, a.tahun_dak, b.kecamatan
                                 from tblbpp_dak a
                                 left join tblbpp b on a.id_bpp=b.id
-                                where b.kecamatan='$kode_kec'
-                                ");
+                                where b.kecamatan='" . $kode_kec . "' and a.id_bpp = '" . $kode_bpp . "'");
         $results = $query3->getResultArray();
 
         $data =  [
@@ -284,15 +283,14 @@ class KecamatanModel extends Model
         return $row;
     }
 
-    public function getPotensiWilayah($kode_kec)
+    public function getPotensiWilayah($kode_kec, $kode_bpp)
     {
         $db = Database::connect();
         $query3  = $db->query("select *, a.id_potensi, a.id_bpp, a.luas_lhn, b.kecamatan, c.nama_subsektor, c.nama_komoditas
                                 from tb_bpp_potensi a
                                 left join tblbpp b on a.id_bpp=b.id
                                 left join tb_komoditas c on a.kode_komoditas=c.kode_komoditas
-                                where b.kecamatan='$kode_kec'
-                                ");
+                                where b.kecamatan='" . $kode_kec . "' and a.id_bpp = '" . $kode_bpp . "'");
         $results = $query3->getResultArray();
 
         $data =  [

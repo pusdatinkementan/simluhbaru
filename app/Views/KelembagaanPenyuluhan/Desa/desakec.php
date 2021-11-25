@@ -21,6 +21,7 @@
             </thead>
             <tbody>
                 <?php
+                $jml_des = 0;
                 $i = 1;
                 foreach ($tabel_data as $row) {
                 ?>
@@ -39,6 +40,7 @@
                         </td>
                     </tr>
                 <?php
+                    $jml_des = $jml_des + $row['jum'];
                 }
                 ?>
 
@@ -52,7 +54,7 @@
                         <p class="text-s font-weight-bold mb-0"><b>JUMLAH</b></p>
                     </th>
                     <th class="align-middle text-center text-sm">
-                        <p class="text-s font-weight-bold mb-0"><b><?= $jum_des ?></b></p>
+                        <p class="text-s font-weight-bold mb-0"><b><?= $jml_des ?></b></p>
                     </th>
                 </tr>
             </tfoot>

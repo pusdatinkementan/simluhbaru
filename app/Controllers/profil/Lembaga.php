@@ -148,22 +148,23 @@ class Lembaga extends BaseController
             $query2 = $db->query('SELECT * FROM reff_klasifikasi_bpp');
             $query2->getResultArray();
 
+
             $dtlembaga = $lembagaModel->getProfil($kode);
             // $dtprov = $this->modelProv->getProv();
-            $wilkec = $kec_model->getWIlkec($kode);
-            $penyuluh = $kec_model->getPenyuluh($kode);
-            $klas = $kec_model->getKlasifikasi($kode);
-            $penyuluhPNS = $kec_model->getPenyuluhPNS(session()->get('kodebapel'));
-            $penyuluhTHL = $kec_model->getPenyuluhTHL(session()->get('kodebapel'));
-            $award = $kec_model->getAward($kode);
-            $dana = $kec_model->getDana($kode);
-            $fasdata = $kec_model->getFas($kode);
-            $kec = $kec_model->getKec(session()->get('kodebapel'));
-            $potensi = $kec_model->getPotensiWilayah($kode);
-            $idbpp = $kec_model->getIdBpp(session()->get('kodebapel'));
+            $wilkec = $lembagaModel->getWIlkec($kode);
+            $penyuluh = $lembagaModel->getPenyuluh($kode);
+            $klas = $lembagaModel->getKlasifikasi($kode);
+            $penyuluhPNS = $lembagaModel->getPenyuluhPNS(session()->get('kodebapel'));
+            $penyuluhTHL = $lembagaModel->getPenyuluhTHL(session()->get('kodebapel'));
+            $award = $lembagaModel->getAward($kode);
+            $dana = $lembagaModel->getDana($kode);
+            $fasdata = $lembagaModel->getFas($kode);
+            $kec = $lembagaModel->getKec(session()->get('kodebapel'));
+            $potensi = $lembagaModel->getPotensiWilayah($kode);
+            $idbpp = $lembagaModel->getIdBpp(session()->get('kodebapel'));
             $kode = $wilModel->getKodeWil($kode);
 
-            $jenis_komoditas = $kec_model->getJenisKomoditas();
+            $jenis_komoditas = $lembagaModel->getJenisKomoditas();
             // $pns = $provModel->getTotalPNS($kode);
 
             $data = [

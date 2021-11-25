@@ -57,7 +57,7 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                             <p class="text-xs font-weight-bold mb-0"><?= $i++ ?></p>
                         </td>
                         <td>
-                            <a href="<?= base_url('/detail_kecamatan?kode_kec=' . $row['id_daerah']) ?>">
+                            <a href="<?= base_url('/detail_kecamatan?kode_kec=' . $row['id_daerah'] . '&kodebpp=' . $row['id'] . '&kode_bp3k=' . $row['kode_bp3k']) ?>">
                                 <p class="text-xs font-weight-bold mb-0"><?= $row['nama_bpp'] ?></p>
                             </a>
                         </td>
@@ -142,7 +142,7 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                                                     </div>
                                                     <label>Alamat Kantor</label>
                                                     <div class="input-group mb-3">
-                                                        <textarea class="form-control" placeholder="Alamat Kantor" id="alamat" name="alamat"></textarea>
+                                                        <textarea class="form-control" placeholder="Alamat Kantor" id="alamat" name="alamat" required></textarea>
                                                     </div>
                                                     <label>Kecamatan (lokasi BPP)</label>
                                                     <div class="input-group mb-3">
@@ -157,13 +157,13 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                                                     </div>
                                                     <label for="ketua">Tanggal Pembentukan</label>
                                                     <div class="input-group mb-3">
-                                                        <select id="day" name="tgl_berdiri" class="form-select tgl_berdiri" aria-label="Default select example">
+                                                        <select id="day" name="tgl_berdiri" class="form-select tgl_berdiri" aria-label="Default select example" required>
                                                             <option value=""></option>
                                                         </select>
-                                                        <select id="month" name="bln_berdiri" class="form-select bln_berdiri" aria-label="Default select example">
+                                                        <select id="month" name="bln_berdiri" class="form-select bln_berdiri" aria-label="Default select example" required>
                                                             <option value=""></option>
                                                         </select>
-                                                        <select id="year" name="thn_berdiri" class="form-select thn_berdiri" aria-label="Default select example">
+                                                        <select id="year" name="thn_berdiri" class="form-select thn_berdiri" aria-label="Default select example" required>
                                                             <option value=""></option>
                                                         </select>
                                                     </div>
@@ -187,15 +187,15 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                                                     </div>
                                                     <label>Koordinat BPP</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="Koordinat BPP" name="koordinat_lokasi_bpp" id="koordinat_lokasi_bpp" aria-label="gps" aria-describedby="nama-addon">
+                                                        <input type="text" class="form-control" placeholder="Koordinat BPP" name="koordinat_lokasi_bpp" id="koordinat_lokasi_bpp" aria-label="gps" aria-describedby="nama-addon" required>
                                                     </div>
                                                     <label>No.Telepon/Fax</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="No. Telepon" name="telp_bpp" id="telp_bpp" onkeypress="return Angka(event)">
+                                                        <input type="text" class="form-control" placeholder="No. Telepon" name="telp_bpp" id="telp_bpp" onkeypress="return Angka(event)" required>
                                                     </div>
                                                     <label>Alamat Email</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="Email" name="email" id="email">
+                                                        <input type="text" class="form-control" placeholder="Email" name="email" id="email" required>
                                                     </div>
                                                     <label>Alamat Website/Blog</label>
                                                     <div class="input-group mb-3">
@@ -203,7 +203,7 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
                                                     </div>
                                                     <label>Nama Pimpinan</label>
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="Nama" name="ketua" id="ketua">
+                                                        <input type="text" class="form-control" placeholder="Nama" name="ketua" id="ketua" required>
                                                         &nbsp; &nbsp;<label style="margin-top: 10px;">No. HP</label>&nbsp; &nbsp;
                                                         <input type="text" class="form-control" name="telp_hp" id="telp_hp" placeholder="No. HP" onkeypress="return Angka(event)">
                                                     </div>
@@ -435,20 +435,14 @@ if (empty(session()->get('status_user')) || session()->get('status_user') == '2'
 
 <?= $this->section('script') ?>
 <script>
-    function previewImg() {
-        const sampul = document.querySelector('#foto');
-        const sampulLabel = document.querySelector('.custom-file-label');
-        const imgPreview = document.querySelector('.img-preview');
-
-        sampulLabel.textContent = foto.files[0].name;
-
-        const fileSampul = new FileReader();
-        fileSampul.readAsDataURL(foto.files[0]);
-
-        fileSampul.onload = function(e) {
-            imgPreview.src = e.target.result;
-        }
-    }
+    $(function() {
+        $('input[name="tglpembentukan"]').daterangepicker({
+            format: 'dd/MM/YYYY',
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1950
+        });
+    });
 </script>
 <script>
     function Angka(event) {

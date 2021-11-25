@@ -323,7 +323,7 @@ $data = $json[0];
                                                                     <p class="text-xs font-weight-bold mb-0"><?= $i++ ?></p>
                                                                 </td>
                                                                 <td class="align-middle text-sm">
-                                                                    <p class="text-xs font-weight-bold mb-0"><?= $pns['nama'] ?></p>
+                                                                    <p class="text-xs font-weight-bold mb-0"><a href="<?= base_url('profil/penyuluh/detail/' . $pns['nip']) ?>" style="color: blue;"><?= $pns['nama'] ?></p>
                                                                 </td>
                                                             </tr>
                                                         <?php
@@ -466,21 +466,33 @@ $data = $json[0];
                             <div class="card">
                                 <div class="card-body p-3">
                                     <div class="row">
-                                        <h4 class="h3 mb-4 text-gray-800">Foto Bangunan</h4>
-                                        <div class="col-lg-3 mb-lg-0 mb-4 text-center">
-                                            <div class="card">
-                                                <div class="card-body p-3 ">
-                                                    <img src="<?= base_url('assets/img/' . $dt['foto']) ?>" width="150px" class="img-thumbnail" alt="profil">
-                                                </div>
-                                            </div>
+                                        <h4 class="h3 mb-4 text-gray-800">Foto Bangunan<i class="fas fa-edit" style="float: right;" data-bs-toggle="modal" data-bs-target="#modal-foto" id="btn-edit" data-id="<?= $dt['id']; ?>"></i></a></h4>
+                                        <div class="col">
+                                            <label>Foto BPP</label><br>
+                                            <img src="<?= base_url('assets/img/' . $dt['foto']) ?>" width="150px" height="150px" class="img-thumbnail" alt="profil">
+                                        </div>
+                                        <div class="col">
+                                            <label>Foto Tampak Depan BPP</label><br>
+                                            <img src="<?= base_url('assets/img/' . $dt['foto_depan']) ?>" width="150px" height="150px" class="img-thumbnail" alt="profil">
+                                        </div>
+                                        <div class="col">
+                                            <label>Foto Tampak Belakang BPP</label><br>
+                                            <img src="<?= base_url('assets/img/' . $dt['foto_belakang']) ?>" width="150px" height="150px" class="img-thumbnail" alt="profil">
+                                        </div>
+
+                                        <div class="col">
+                                            <label>Foto Tampak Samping BPP</label><br>
+                                            <img src="<?= base_url('assets/img/' . $dt['foto_samping']) ?>" width="150px" height="150px" class="img-thumbnail" alt="profil">
+                                        </div>
+
+                                        <div class="col">
+                                            <label>Foto Tampak Dalam BPP</label><br>
+                                            <img src="<?= base_url('assets/img/' . $dt['foto_dalam']) ?>" width="150px" height="150px" class="img-thumbnail" alt="profil">
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
 
                     </div>
                 </div>

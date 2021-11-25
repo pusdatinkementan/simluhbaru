@@ -35,7 +35,7 @@
                             <p class="text-xs font-weight-bold mb-0"><?= $i++ ?></p>
                         </td>
                         <td class="align-middle text-center text-sm">
-                            <a href="<?= base_url('/profilbpp?kode_kec=' . $item['kecamatan']) ?>" style="color: blue;">
+                            <a href="<?= base_url('/profilbpp?kode_kec=' . $item['kecamatan'] . '&kodebpp=' . $item['id']) ?>" style="color: blue;">
                                 <p class="text-xs font-weight-bold mb-0" style="text-align: left;"><?= $item['nama_bpp'] ?></p>
                             </a>
                         </td>
